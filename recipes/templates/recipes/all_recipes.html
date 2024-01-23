@@ -1,0 +1,169 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe List</title>
+
+    <!-- Preload the background image -->
+    <link rel="preload" as="image" href="{% static 'recipes/images/background-food.jpg' %}">
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: url("{% static 'recipes/images/background-food.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin: 0;
+            width: 100%;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 75%;
+            max-width: 600px;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .recipe-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 75%;
+            cursor: pointer; /* Add cursor pointer to indicate clickability */
+        }
+
+        .top-bar button {
+            padding: 10px;
+            background-color: #333; /* Match the color of the cards */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        figure {
+            margin: 15px 0;
+            position: relative;
+            width: 75%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+
+        img.chart {
+            width: 100%;
+        }
+
+        p {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: #ddd;
+            margin: 15px 0;
+            width: 75%;
+            max-width: 600px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        h2.white {
+            color: white;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Recipe List</h1>
+
+    <div class="top-bar">
+        <button onclick="location.href='{% url 'recipes:home' %}'">Home</button>
+        <button onclick="location.href='{% url 'logout' %}'">Logout</button>
+    </div>
+
+    {% for object in object_list %}
+        <a href="{{ object.get_absolute_url }}" class="recipe-card">
+            <h2 class="white">{{ object.name }}</h2>
+            <figure>
+                {% if 'chart' not in object.pic.url %}
+                    <img src="{{ object.pic.url }}" alt="{{ object.name }}" title="{{ object.name }}">
+                {% else %}
+                    <img class="chart" src="{{ object.pic.url }}" alt="{{ object.name }}" title="{{ object.name }}">
+                {% endif %}
+            </figure>
+            <p>{{ object.description }}</p>
+        </a>
+    {% endfor %}
+
+    <!-- Breaks between existing content and charts -->
+    <hr>
+    
+    <h2>Ingredients Distribution</h2>
+    <img src="{% static 'recipes/images/pie_chart.png' %}" alt="Pie Chart">
+    <br>
+    <hr>
+    
+    <h2>Cooking Time Distribution</h2>
+    <img src="{% static 'recipes/images/bar_chart.png' %}" alt="Bar Chart">
+    <br>
+    <hr>
+    
+    <h2>Cooking Time Distribution</h2>
+    <img src="{% static 'recipes/images/line_chart.png' %}" alt="Line Chart">
+    <br>
+    <br>
+    <br>
+    
+
+</body>
+</html>

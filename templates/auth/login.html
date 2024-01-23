@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <title>{% block title %}Login{% endblock %}</title>
+    <body>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: url("{% static 'recipes/images/background-food.jpg' %}") no-repeat center center fixed;
+                background-size: cover;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+
+            h1 {
+                background-color: #333;
+                color: white;
+                padding: 10px;
+                margin: 0;
+                width: 100%;
+            }
+
+            form {
+                margin-top: 20px;
+                display: inline-block; /* Add this line to make the black background stop at the width of the input boxes */
+            }
+
+            label {
+                background-color: #555;
+                color: white;
+                padding: 5px;
+                border-radius: 5px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                display: block;
+            }
+
+            input {
+                padding: 8px;
+                margin-bottom: 10px;
+            }
+
+            button {
+                background-color: #333;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #555;
+            }
+        </style>
+        <h1>{% block page_title %}Login{% endblock %}</h1>
+        <br>
+        <br>
+        {% if error_message %}
+           <p style="color: white;">{{ error_message }}</p>
+        {% endif %}
+        <form action="" method="POST">
+           {% csrf_token %}
+           <label for="id_username">Username:</label>
+           {{ form.username }}
+           <br>
+           <label for="id_password">Password:</label>
+           {{ form.password }}
+           <br>
+           <button type="submit">Login</button>
+        </form>
+    </body>
+</html>

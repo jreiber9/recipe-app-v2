@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{% static 'recipes/images/background-food.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin: 0;
+            width: 100%;
+        }
+
+        p {
+            margin-top: 20px;
+            color: white; /* Adjusted text color for better visibility */
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<h1>You've successfully logged out!</h1>
+<p>Thank you for using our recipe app. Click <a href="{% url 'login' %}">here</a> to log back in.</p>
+
+</body>
+</html>

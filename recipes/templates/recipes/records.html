@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{% static 'recipes/images/background-food.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin: 0;
+            width: 100%;
+            text-align: center; /* Center the text within the heading */
+        }
+
+        h3 {
+            text-align: center;
+        }
+        
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Recipe Records</h1>
+
+<div class="container">
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.recipe_title }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if recipes %}
+        <table>
+            <tr>
+                <th>Recipe Name</th>
+                <th>Cooking Time</th>
+                <th>Ingredients</th>
+                <th>Description</th>
+            </tr>
+            {% for recipe in recipes %}
+                <tr>
+                    <td><a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a></td>
+                    <td>{{ recipe.cooking_time }}</td>
+                    <td>{{ recipe.ingredients }}</td>
+                    <td>{{ recipe.description }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h3>No matching recipes found.</h3>
+    {% endif %}
+
+    <div class="button-container">
+        <a href="{% url 'recipes:list' %}" class="button">View All Recipes</a>
+        <a href="{% url 'logout' %}" class="button">Logout</a>
+    </div>
+</div>
+
+</body>
+</html>

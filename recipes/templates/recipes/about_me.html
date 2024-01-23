@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Preload the background image -->
+    <link rel="preload" as="image" href="{% static 'recipes/images/background-food.jpg' %}">
+</head>
+<title>{% block title %}About Me{% endblock %}</title>
+<body>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'recipes/images/background-food.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white; /* Set the text color to be visible against the background */
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 75%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* Display the list items in a row */
+        }
+
+        li {
+            margin-right: 10px; /* Add some space between the circles */
+        }
+
+        a {
+            display: inline-block;
+            background-color: white;
+            color: #333;
+            padding: 15px; /* Increase padding for a circular shape */
+            text-decoration: none;
+            border-radius: 50%; /* Make it a circle */
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        a:hover {
+            background-color: #f5f2f2;
+        }
+
+        /* Style the back button */
+        .back-button {
+            display: inline-block;
+            background-color: white;
+            color: #333;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button:hover {
+            background-color: #f5f2f2;
+        }
+    </style>
+
+    <div>
+        <h1>{% block page_title %}About Me{% endblock %}</h1>
+        <img src="{% static 'recipes/images/pic_of_me.jpg' %}" alt="My Picture">
+        <p>
+            Hello! My name is Josh I am the creator of this app! You can learn more about me here-
+        </p>
+        <p>
+      
+            <ul>
+                <li><a href="https://jreiber9.github.io/">Portfolio</a></li>
+                <li><a href="https://www.linkedin.com/in/josh-reiber-53a22538/">LinkedIn</a></li>
+                <li><a href="https://github.com/jreiber9">Github</a></li>
+            </ul>
+        </p>
+
+        <!-- Back button to go to recipes_home -->
+        <a href="{% url 'recipes:recipes_home' %}" class="back-button">Back to Recipes Home</a>
+    </div>
+
+    <!-- Add navigation or other elements as needed -->
+
+</body>
+</html>
