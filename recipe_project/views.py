@@ -40,6 +40,7 @@ def login_view(request):
     #load the login page using "context" information
     return render(request, 'auth/login.html', context)     
 
+
 #define a function view called logout_view that takes a request from user
 def logout_view(request):                                  
     logout(request)          #the use pre-defined Django function to logout

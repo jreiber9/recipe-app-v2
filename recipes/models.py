@@ -1,7 +1,7 @@
 from django.db import models
 from django.shortcuts import reverse
 
-# Create your models here.
+# this a model representing a recipe
 class Recipe(models.Model):
     recipe_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=120)
@@ -12,6 +12,8 @@ class Recipe(models.Model):
     
     def __str__(self):
         return self.name
+    
+
 
     def get_absolute_url(self):
 	    return reverse('recipes:detail', kwargs={'pk': self.pk})
